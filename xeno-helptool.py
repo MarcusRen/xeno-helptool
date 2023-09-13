@@ -1,20 +1,12 @@
-print("Добро пожаловать в Ксено-помощник v0.1 ! ")
-input("Нажмите <ENTER> для продолжения")
+import time
+import os
 
-#important values
-total_nodes = 0
-depth = 0
-learned_nodes = 0
-node_edges = 0
-node_buffer = 0
-node_status = "Н"
-node_status_true = "Д"
-node_status_false = "Н"
-check_done = "Н"
-check_depth = "Н"
-status_true = "Д"
-status_false = "Н"
-#Node info
+programm_end = 0
+needed_depth = 0
+cycle_status =  "Д"
+check_positive = "Д"
+check_negative = "Н" 
+
 
 #LVL 0 Node
 steams_d0_showlist = ["(Ф)изические повреждения", "(И)спользование инструментов", "(Э)лектричество"]
@@ -36,43 +28,42 @@ steams_d3_showlist = ["(Ф)изические повреждения", "(Р)ад
 steams_d3 = ["Ф", "Р", "Э", "Г"]
 steams_d3_todo = ["Нанесите артефакту 500 brute (механического) урона.", "Артефакт отреагирует при получении 50 урона от радиации.", "Артефакт должен находиться в среде с давлением выше 385 кПа", "Артефакт отреагирует при попаданию в среду с газообразной плазмой."]
 
-#Main cycle body
+os.system("mode con cols=130 lines=3")
 
-total_nodes = int(input("Сколько граней в узле ?: " ))
-while learned_nodes != total_nodes:
-    node_buffer += int(total_nodes)
-    print("Текущая глубина узла: " + str(depth))
-    node_status = input("Узел изучен? (Д/Н) ")
-    if str.upper(node_status) == node_status_false : #Tier 0 Node
+os.system('cls')
+print("o/")
+print("Добро пожаловать в Ксено-помощник v0.3 ! ")
+input("Нажмите <ENTER> для продолжения")
+os.system('cls')
+
+while programm_end == 0:
+    print(" ")
+    needed_depth = input("Введите требуемую глубину узла: ")
+    print(" ")
+    os.system('cls')
+
+    if int(needed_depth) == 0 : #Tier 0 Node
+        print("Типы стимуляции артефакта:")
         print(steams_d0_showlist) 
-        steams_type = input("Выберите тип стимуляции: ")
+        steams_type = input("Выберите необходимый тип: ")
+        os.system('cls')
+        print("Решение найдено:")
         if str.upper(steams_type) == str(steams_d0[0]):
             print(steams_d0_todo[0])
         elif str.upper(steams_type) == str(steams_d0[1]):
             print(steams_d0_todo[1])
         elif str.upper(steams_type) == str(steams_d0[2]):
             print(steams_d0_todo[2])
-        check_done = input("Узел завершен? (Д/Н) ")
-        if str.upper(check_done) == "Д":
-            depth += 1
-            learned_nodes += 1
-    elif str.upper(node_status) == node_status_true :
-        depth += 1
+        input("Для продолжения нажмите <ENTER>")
+        os.system('cls')
 
-    print("Текущая глубина узла: " + str(depth))
-    node_buffer = int(node_edges)
-    node_edges = input("Введите кол-во граней нового узла: ")
-    if node_buffer > 1 and int(node_edges) == 1:
-        total_nodes -= 1
-    if int(node_edges) != 1:
-        total_nodes += int(node_edges)
-    elif int(node_edges) == 1:
-        total_nodes += 1
-  
-    node_status = input("Узел изучен? (Д/Н) ")
-    if str.upper(node_status) == node_status_false : #Tier 1 Node
+
+    if int(needed_depth) == 1 : #Tier 1 Node
+        print("Типы стимуляции артефакта:")
         print(steams_d1_showlist) 
-        steams_type = input("Выберите тип стимуляции: ")
+        steams_type = input("Выберите необходимый тип: ")
+        os.system('cls')
+        print("Решение найдено:")
         if str.upper(steams_type) == str(steams_d1[0]):
             print(steams_d1_todo[0])
         elif str.upper(steams_type) == str(steams_d1[1]):
@@ -83,28 +74,16 @@ while learned_nodes != total_nodes:
             print(steams_d1_todo[3])
         elif str.upper(steams_type) == str(steams_d1[4]):
             print(steams_d1_todo[4])
-            
-        check_done = input("Узел завершен? (Д/Н) ")
-        if str.upper(check_done) == str.upper(status_true):
-            depth += 1
-            learned_nodes += 1
-    elif str.upper(node_status) == node_status_true :
-        depth += 1    
+        input("Для продолжения нажмите <ENTER>")
+        os.system('cls')
 
-    print("Текущая глубина узла: " + str(depth))  
-    node_buffer = int(node_edges)
-    node_edges = input("Введите кол-во граней нового узла: ")
-    if node_buffer > 1 and int(node_edges) == 1:
-        total_nodes -= 1
-    if int(node_edges) != 1:
-        total_nodes += int(node_edges)
-    elif int(node_edges) == 1:
-        total_nodes += 1
-
-    node_status = input("Узел изучен? (Д/Н) ")
-    if str.upper(node_status) == node_status_false : #Tier 2 Node
+        
+    if int(needed_depth) == 2 : #Tier 2 Node
+        print("Типы стимуляции артефакта:")
         print(steams_d2_showlist) 
-        steams_type = input("Выберите тип стимуляции: ")
+        steams_type = input("Выберите необходимый тип: ")
+        os.system('cls')
+        print("Решение найдено:")
         if str.upper(steams_type) == str(steams_d2[0]):
             print(steams_d2_todo[0])
         elif str.upper(steams_type) == str(steams_d2[1]):
@@ -113,29 +92,16 @@ while learned_nodes != total_nodes:
             print(steams_d2_todo[2])
         elif str.upper(steams_type) == str(steams_d2[3]):
             print(steams_d2_todo[3])
+        input("Для продолжения нажмите <ENTER>")
+        os.system('cls')
 
-        check_done = input("Узел завершен? (Д/Н) ")
-        if str.upper(check_done) == str.upper(status_true):
-            depth += 1
-            learned_nodes += 1
-    elif str.upper(node_status) == node_status_true :
-        depth += 1
 
-## Багуля в этом блоке. Если идет кол-во нод 1-2-1 (всего 3 ноды) - цикл не плюсует последнюю т.к. она считается на второй, но тут идет 1-2-2-1 и вот в 2-2-1 лишняя единица не вычитается, нужно что-то на подобии if node_buffer == node_eges > total_edges -= 1
-    print("Текущая глубина узла: " + str(depth))  
-    node_buffer = int(node_edges)
-    node_edges = input("Введите кол-во граней нового узла: ")
-    if node_buffer > 1 and int(node_edges) == 1:
-        total_nodes -= 1
-    if int(node_edges) != 1:
-        total_nodes += int(node_edges)
-    elif int(node_edges) == 1:
-        total_nodes += 1
-
-    node_status = input("Узел изучен? (Д/Н) ")
-    if str.upper(node_status) == node_status_false : #Tier 3 Node
+    if int(needed_depth) == 3 : #Tier 3 Node
+        print("Типы стимуляции артефакта:")
         print(steams_d3_showlist) 
-        steams_type = input("Выберите тип стимуляции: ")
+        steams_type = input("Выберите необходимый тип: ")
+        os.system('cls')
+        print("Решение найдено:")
         if str.upper(steams_type) == str(steams_d3[0]):
             print(steams_d3_todo[0])
         elif str.upper(steams_type) == str(steams_d3[1]):
@@ -144,15 +110,25 @@ while learned_nodes != total_nodes:
             print(steams_d3_todo[2])
         elif str.upper(steams_type) == str(steams_d3[3]):
             print(steams_d3_todo[3])
+        input("Для продолжения нажмите <ENTER>")
+        os.system('cls')
 
-        check_done = input("Узел завершен? (Д/Н) ")
-        if str.upper(check_done) == str.upper(status_true):
-            depth += 1
-            learned_nodes += 1
-    elif str.upper(node_status) == node_status_true :
-        depth += 1
+    print(" ")
+    cycle_status = input("Дальнейшие изучение требуется ? Д/Н: ")
+    print(" ")
+    if str.upper(cycle_status) == check_positive:
+        os.system('cls')
+        print(" ")
+        print("Переходим к новому узлу, нажмите <ENTER>")
+        input()
+        os.system('cls')
 
-print("Total nodes: ", total_nodes) #DEBUG
-print("Learned nodes:", learned_nodes ) #DEBUG
-input("pause before end") #DEBUG
-print("End of programm") #DEBUG
+        programm_end = 0
+    else:
+        os.system('cls')
+        programm_end = 1
+
+print(" ")
+print("Поздравляем с завершением изучения артефакта!")
+time.sleep(1)
+os.system('cls')
